@@ -80,8 +80,8 @@ This project requires sensitive information like private keys. Always store your
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
-## 🙌 **Acknowledgments**
+## 🙌 **Acknowledegments**
 
 - Built with ❤️ using [OpenAI](https://openai.com/), [Node.js](https://nodejs.org/), and [OPUS Layer API](https://api.opuslayer.ai)
--  by  [OPUS AI Layer](https://opuslayer.ai)
+- By  [OPUS Layer AI](https://opuslayer.ai)
 
