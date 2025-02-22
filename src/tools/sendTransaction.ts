@@ -6,8 +6,8 @@ import { ToolConfig } from './allTools.js';
 interface SendTransactionArgs {
     explanation: string;
     prompt: string;
-    isContract?: boolean;
-    isToken?: boolean;
+    isContract?: string;
+    isToken?: string;
     tokenContract?: string;
     to: Address;
     value?: string;
@@ -25,15 +25,15 @@ export const sendTransactionTool: ToolConfig<SendTransactionArgs> = {
         type: 'function',
         function: {
             name: 'send_transaction',
-            description: 'creates and sends a transaction , note that value is in eth . Write a small explanation of the transaction in the explanation field and the original user prompt for his intentions of the transaction in the prompt field',
+            description: 'creates and sends a transaction , note that value is in eth . Write a small explanation of the transaction in the explanation field and the original user prompt for his intentions of the transaction in the prompt field. if no tokenContract is applicable, type in "0x". for isToken and isContract , provide true or false only',
             parameters: {
                 type: 'object',
                 properties: {
                     explanation: { type: 'string', optional: false },
                     prompt: { type: 'string', optional: false },
-                    tokenContract: { type: 'string', optional: true },
-                    isToken: { type: 'boolean', optional: true },
-                    isContract: { type: 'boolean', optional: true },
+                    tokenContract: { type: 'string', optional: false},
+                    isToken: { type: 'string', optional: false },
+                    isContract: { type: 'string', optional: false },
                     to: {
                         type: 'string',
                         pattern: '^0x[a-fA-F0-9]{40}$'
@@ -127,7 +127,7 @@ async function createSignedTx({
             explanation,
             isContract,
             isToken,
-            tokenContract,
+            tokenContract ,
             model: 'mini'
         });
         console.log(response.data);
