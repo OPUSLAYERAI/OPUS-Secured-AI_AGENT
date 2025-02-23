@@ -24,7 +24,7 @@ const question = (query: string): Promise<string> => {
 async function chat(thread: Thread, assistant: Assistant): Promise<void> {
     while (true) {
         // Get user input
-        const userInput = await question('\nYou: ');
+        const userInput = await question('\nUser: ');
 
         // Allow user to exit
         if (userInput.toLowerCase() === 'exit') {
@@ -44,10 +44,10 @@ async function chat(thread: Thread, assistant: Assistant): Promise<void> {
             const result = await performRun(run, client, thread);
 
             if (result?.type === 'text') {
-                console.log('\nAlt:', result.text.value);
+                console.log('\nOPUS Agent:', result.text.value);
             }
         } catch (error) {
-            console.error('Error during chat:', error instanceof Error ? error.message : 'Unknown error');
+            console.error('Error reported:', error instanceof Error ? error.message : 'Unknown error');
             rl.close();
             break;
         }
@@ -59,7 +59,7 @@ async function main(): Promise<void> {
         const assistant = await createAssistant(client);
         const thread = await createThread(client);
 
-        console.log('Chat started! Type "exit" to end the conversation.');
+        console.log('OPUS Agent is On! Type in your commands or "exit" to end conversation');
         await chat(thread, assistant);
     } catch (error) {
         console.error('Error in main:', error instanceof Error ? error.message : 'Unknown error');
